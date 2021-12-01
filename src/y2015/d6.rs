@@ -21,18 +21,18 @@ pub fn part1(s: String) -> Result<()> {
         );
         match (&*instruction1, &*instruction2) {
             ("toggle", "") => {
-                for x in x1..=x2 {
-                    for y in y1..=y2 {
-                        lights[x][y] = !lights[x][y];
+                for column in lights.iter_mut().skip(x1).take(x2 + 1) {
+                    for light in column.iter_mut().skip(y1).take(y2 + 1) {
+                        *light = !*light;
                     }
                 }
             }
             ("turn", state) => {
                 let state = state != "off ";
 
-                for x in x1..=x2 {
-                    for y in y1..=y2 {
-                        lights[x][y] = state;
+                for column in lights.iter_mut().skip(x1).take(x2 + 1) {
+                    for light in column.iter_mut().skip(y1).take(y2 + 1) {
+                        *light = state;
                     }
                 }
             }
@@ -70,23 +70,23 @@ pub fn part2(s: String) -> Result<()> {
         );
         match (&*instruction1, &*instruction2) {
             ("toggle", "") => {
-                for x in x1..=x2 {
-                    for y in y1..=y2 {
-                        lights[x][y] += 2;
+                for column in lights.iter_mut().skip(x1).take(x2 + 1) {
+                    for light in column.iter_mut().skip(y1).take(y2 + 1) {
+                        *light += 2;
                     }
                 }
             }
             ("turn", "off ") => {
-                for x in x1..=x2 {
-                    for y in y1..=y2 {
-                        lights[x][y] = lights[x][y].saturating_sub(1);
+                for column in lights.iter_mut().skip(x1).take(x2 + 1) {
+                    for light in column.iter_mut().skip(y1).take(y2 + 1) {
+                        *light = light.saturating_sub(1);
                     }
                 }
             }
             ("turn", "on ") => {
-                for x in x1..=x2 {
-                    for y in y1..=y2 {
-                        lights[x][y] += 1;
+                for column in lights.iter_mut().skip(x1).take(x2 + 1) {
+                    for light in column.iter_mut().skip(y1).take(y2 + 1) {
+                        *light += 1;
                     }
                 }
             }
