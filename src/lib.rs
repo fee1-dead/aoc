@@ -1,3 +1,4 @@
+#![feature(array_windows)]
 #![feature(decl_macro)]
 #![feature(in_band_lifetimes)]
 #![feature(iter_advance_by)]
