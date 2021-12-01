@@ -6,7 +6,7 @@ pub fn part1(s: String) -> Result<()> {
     let mut z: u64;
 
     for l in s.lines() {
-        scanfmt!(l.trim(), "{}x{}x{}", x, y, z);
+        scanfmt!(l, "{}x{}x{}", x, y, z);
         total += (x * y + y * z + x * z) * 2;
         let max = x.max(y).max(z);
         total += (x * y * z) / max;

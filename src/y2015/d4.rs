@@ -1,7 +1,6 @@
 use crate::*;
 
 pub fn part1(s: String) -> Result<()> {
-    let s = s.trim();
     for i in 1.. {
         let digest = md5::compute(format!("{s}{i}"));
         if digest[0] != 0 {
@@ -19,7 +18,6 @@ pub fn part1(s: String) -> Result<()> {
 }
 
 pub fn part2(s: String) -> Result<()> {
-    let s = s.trim();
     for i in 1.. {
         let digest = md5::compute(format!("{s}{i}"));
         if digest[0] != 0 {

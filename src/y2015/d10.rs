@@ -24,11 +24,8 @@ pub fn look_and_say(s: &str) -> String {
 }
 
 pub fn part1(mut s: String) -> Result<()> {
-    let mut input = s.trim();
-
     for _ in 0..40 {
-        s = look_and_say(input);
-        input = &s;
+        s = look_and_say(&s);
     }
 
     dbg!(s.len());
@@ -37,11 +34,8 @@ pub fn part1(mut s: String) -> Result<()> {
 }
 
 pub fn part2(mut s: String) -> Result<()> {
-    let mut input = s.trim();
-
     for _ in 0..50 {
-        s = look_and_say(input);
-        input = &s;
+        s = look_and_say(&s);
     }
 
     dbg!(s.len());

@@ -3,7 +3,7 @@ use crate::*;
 fn distance_permutations(s: String) -> Result<impl Iterator<Item = usize>> {
     let mut all_cities = HashSet::default();
     let mut map = HashMap::default();
-    for l in s.lines().map(str::trim) {
+    for l in s.lines() {
         let a: String;
         let b: String;
         let distance: usize;

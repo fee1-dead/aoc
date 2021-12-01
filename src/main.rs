@@ -61,7 +61,12 @@ fn main() -> Result<()> {
                 _ => bail!("invalid part"),
             };
 
-            let text = get(year, day)?;
+            let mut text = get(year, day)?;
+
+            if text.ends_with('\n') {
+                text.pop();
+            }
+
             println!("Got text");
             let ins = Instant::now();
             runner(text)?;
