@@ -1,0 +1,17 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.45"
+fxhash = "0.2.1"
+scanfmt = { git = "https://github.com/fee1-dead/scanfmt.git" }
+md5 = "0.7.0"
+
+[dependencies.reqwest]
+version = "0.11.6"
+default-features = false
+features = ["blocking", "rustls-tls"]
