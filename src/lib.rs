@@ -5,7 +5,9 @@
 pub use anyhow::*;
 pub use fxhash::FxHashMap as HashMap;
 pub use fxhash::FxHashSet as HashSet;
+pub use itertools::Itertools;
 pub use scanfmt::scanfmt;
+pub use tap::Pipe;
 
 pub mod aoc;
 
