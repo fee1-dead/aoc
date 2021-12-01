@@ -1,7 +1,7 @@
+use std::env::args;
 use std::fs;
 use std::path::Path;
 use std::time::Instant;
-use std::{env::args, fs::File, io::Read};
 
 use reqwest::blocking::*;
 use reqwest::header::HeaderMap;
