@@ -1,6 +1,8 @@
 #![feature(array_windows)]
+#![feature(bool_to_option)]
 #![feature(decl_macro)]
 #![feature(in_band_lifetimes)]
+#![feature(vec_retain_mut)]
 #![feature(iter_advance_by)]
 
 pub use anyhow::*;
