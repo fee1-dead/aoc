@@ -1,4 +1,5 @@
 use std::convert::identity;
+use std::num::ParseIntError;
 
 use crate::*;
 
@@ -65,10 +66,10 @@ impl Board {
     }
 }
 
-pub fn part1(s: String) -> Result<()> {
+fn input(s: &str) -> (impl Iterator<Item = Result<u32, ParseIntError>> + '_, Vec<Board>) {
     let mut boards = s.split("\n\n");
     let calls = boards.next().unwrap().split(',').map(str::parse);
-    let mut boards = boards
+    let boards = boards
         .map(|f| {
             let rows = f.lines();
             let numbers = rows
@@ -79,6 +80,12 @@ pub fn part1(s: String) -> Result<()> {
             Board(numbers, [false; 25], None)
         })
         .collect_vec();
+    
+    (calls, boards)
+}
+
+pub fn part1(s: String) -> Result<()> {
+    let (calls, mut boards) = input(&s);
 
     for call in calls {
         let call = call?;
@@ -96,19 +103,7 @@ pub fn part1(s: String) -> Result<()> {
 }
 
 pub fn part2(s: String) -> Result<()> {
-    let mut boards = s.split("\n\n");
-    let calls = boards.next().unwrap().split(',').map(str::parse);
-    let mut boards = boards
-        .map(|f| {
-            let rows = f.lines();
-            let numbers = rows
-                .flat_map(|f| f.split(' ').filter_map(|s| s.parse().ok()))
-                .enumerate()
-                .map(|(idx, n)| (n, idx))
-                .collect();
-            Board(numbers, [false; 25], None)
-        })
-        .collect_vec();
+    let (calls, mut boards) = input(&s);
 
     let mut last_win = None;
 
