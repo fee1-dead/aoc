@@ -66,7 +66,12 @@ impl Board {
     }
 }
 
-fn input(s: &str) -> (impl Iterator<Item = Result<u32, ParseIntError>> + '_, Vec<Board>) {
+fn input(
+    s: &str,
+) -> (
+    impl Iterator<Item = Result<u32, ParseIntError>> + '_,
+    Vec<Board>,
+) {
     let mut boards = s.split("\n\n");
     let calls = boards.next().unwrap().split(',').map(str::parse);
     let boards = boards
@@ -80,7 +85,7 @@ fn input(s: &str) -> (impl Iterator<Item = Result<u32, ParseIntError>> + '_, Vec
             Board(numbers, [false; 25], None)
         })
         .collect_vec();
-    
+
     (calls, boards)
 }
 

@@ -2,6 +2,7 @@
 #![feature(bool_to_option)]
 #![feature(decl_macro)]
 #![feature(in_band_lifetimes)]
+#![feature(int_abs_diff)]
 #![feature(vec_retain_mut)]
 #![feature(iter_advance_by)]
 
