@@ -21,48 +21,15 @@ impl Board {
             false
         }
     }
+
     fn is_win(&self, pos: usize) -> bool {
         let x = pos % 5;
         let y = pos / 5;
 
-        if self.1.iter().copied().skip(x).step_by(5).all(identity) {
-            return true;
-        }
+        let vert = self.1.iter().copied().skip(x).step_by(5).all(identity);
+        let horiz = self.1.iter().copied().skip(y * 5).take(5).all(identity);
 
-        if self.1.iter().copied().skip(y * 5).take(5).all(identity) {
-            return true;
-        }
-
-        // diagonal
-        // x _ _ _ _
-        // _ x _ _ _
-        // _ _ x _ _
-        // _ _ _ x _
-        // _ _ _ _ x
-        if x == y && self.1.iter().copied().step_by(6).take(5).all(identity) {
-            return true;
-        }
-
-        // anti-diagonal
-        // _ _ _ _ x
-        // _ _ _ x _
-        // _ _ x _ _
-        // _ x _ _ _
-        // x _ _ _ _
-        if x + y == 4
-            && self
-                .1
-                .iter()
-                .copied()
-                .skip(4)
-                .step_by(4)
-                .take(5)
-                .all(identity)
-        {
-            return true;
-        }
-
-        false
+        vert || horiz
     }
 }
 
