@@ -23,8 +23,8 @@ fn solve(s: String, ignore_diag: bool) -> Result<()> {
             for x in min..=max {
                 grid[y1 * 1000 + x] += 1;
             }
-        } else if ignore_diag {}
-        else {
+        } else if ignore_diag {
+        } else {
             assert_eq!(x1.abs_diff(x2), y1.abs_diff(y2));
 
             let xs = if x1 < x2 {
