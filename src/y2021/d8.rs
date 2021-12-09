@@ -53,48 +53,49 @@ pub fn part2(s: String) -> Result<()> {
             .tap_mut(|s| s.retain(|ch| !cf.contains(ch)))
             .tap_mut(|s| s.retain(|ch| !bd.contains(ch)))
             .tap_mut(|s| s.retain(|ch| ch != a));
-        let has_eg = |s: &str| {
-            eg.chars().all(|c| s.contains(c))
-        };
-        let has_bd = |s: &str| {
-            bd.chars().all(|c| s.contains(c))
-        };
-        let has_cf = |s: &str| {
-            cf.chars().all(|c| s.contains(c))
-        };
+        let has_eg = |s: &str| eg.chars().all(|c| s.contains(c));
+        let has_bd = |s: &str| bd.chars().all(|c| s.contains(c));
+        let has_cf = |s: &str| cf.chars().all(|c| s.contains(c));
         let has_a = |s: &str| s.contains(a);
-        
-        let digits: usize = l.split_once(" | ").unwrap().1.split(' ').map(|s| {
-            let digit = match s.len() {
-                2 => '1',
-                3 => '7',
-                4 => '4',
-                7 => '8',
-                _ => {
-                    dbg!(s);
-                    let eg = has_eg(s);
-                    let cf = has_cf(s);
-                    let a = has_a(s);
-                    let bd = has_bd(s);
-                    if eg && cf && a {
-                        '0'
-                    } else if a && cf && bd {
-                        '9'
-                    } else if a && cf {
-                        '3'
-                    } else if a && eg && bd {
-                        '6'
-                    } else if a && bd {
-                        '5'
-                    } else if a && eg {
-                        '2'
-                    } else {
-                        unreachable!()
+
+        let digits: usize = l
+            .split_once(" | ")
+            .unwrap()
+            .1
+            .split(' ')
+            .map(|s| {
+                let digit = match s.len() {
+                    2 => '1',
+                    3 => '7',
+                    4 => '4',
+                    7 => '8',
+                    _ => {
+                        dbg!(s);
+                        let eg = has_eg(s);
+                        let cf = has_cf(s);
+                        let a = has_a(s);
+                        let bd = has_bd(s);
+                        if eg && cf && a {
+                            '0'
+                        } else if a && cf && bd {
+                            '9'
+                        } else if a && cf {
+                            '3'
+                        } else if a && eg && bd {
+                            '6'
+                        } else if a && bd {
+                            '5'
+                        } else if a && eg {
+                            '2'
+                        } else {
+                            unreachable!()
+                        }
                     }
-                }
-            };
-            digit
-        }).collect::<String>().parse()?;
+                };
+                digit
+            })
+            .collect::<String>()
+            .parse()?;
         sum += digits;
     }
     dbg!(sum);
