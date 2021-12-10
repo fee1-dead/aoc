@@ -12,6 +12,7 @@ scanfmt = { git = "https://github.com/fee1-dead/scanfmt.git" }
 md5 = "0.7.0"
 itertools = "0.10.1"
 tap = "1.0.1"
+num = "0.4.0"
 
 [dependencies.reqwest]
 version = "0.11.6"
