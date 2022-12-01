@@ -3,7 +3,7 @@ use crate::*;
 type Instructions<'a> = &'a HashMap<&'a str, Expression>;
 type Values<'a> = HashMap<&'a str, u16>;
 
-fn get(s: &'a str, insns: Instructions<'a>, values: &mut Values<'a>) -> u16 {
+fn get<'a>(s: &'a str, insns: Instructions<'a>, values: &mut Values<'a>) -> u16 {
     if let Some(v) = values.get(s) {
         *v
     } else {
@@ -28,7 +28,7 @@ impl Operand {
         }
     }
 
-    fn eval(&'a self, insns: Instructions<'a>, values: &mut Values<'a>) -> u16 {
+    fn eval<'a>(&'a self, insns: Instructions<'a>, values: &mut Values<'a>) -> u16 {
         match self {
             Self::Int(i) => *i,
             Self::Use(s) => get(s, insns, values),
@@ -70,7 +70,7 @@ impl Expression {
         })
     }
 
-    fn eval(&'a self, insns: Instructions<'a>, values: &mut Values<'a>) -> u16 {
+    fn eval<'a>(&'a self, insns: Instructions<'a>, values: &mut Values<'a>) -> u16 {
         match self {
             Self::Constant(op) => op.eval(insns, values),
             Self::Not(op) => !get(op, insns, values),

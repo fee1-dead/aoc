@@ -4,6 +4,6 @@ pub struct Year {
 }
 
 pub struct Day {
-    pub part1: fn(String) -> anyhow::Result<()>,
-    pub part2: fn(String) -> anyhow::Result<()>,
+    pub part1: fn(String) -> crate::Result<()>,
+    pub part2: fn(String) -> crate::Result<()>,
 }

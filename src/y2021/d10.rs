@@ -66,7 +66,9 @@ pub fn part2(s: String) -> Result<()> {
                 b'}' => 3,
                 b'>' => 4,
                 _ => panic!(),
-            }.to_biguint().unwrap();
+            }
+            .to_biguint()
+            .unwrap();
         }
         scores.push(score);
     }

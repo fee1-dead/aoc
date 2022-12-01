@@ -7,7 +7,7 @@ use reqwest::blocking::*;
 use reqwest::header::HeaderMap;
 use reqwest::header::COOKIE;
 
-use aoc::{bail, Context, Result, YEARS};
+use aoc::{bail, ContextCompat, Result, YEARS};
 
 fn url(year: u16, day: u8) -> String {
     format!("https://adventofcode.com/{}/day/{}/input", year, day)
@@ -17,17 +17,20 @@ const SESSION_COOKIE: &str = concat!("session=", include_str!("../SESSION"));
 
 fn get(year: u16, day: u8) -> Result<String> {
     let file = format!("./input/{year}-{day:02}.txt");
+    let path = Path::new(&file);
 
-    if Path::new(&file).exists() {
+    if path.exists() {
         Ok(fs::read_to_string(file)?)
     } else {
+        std::fs::create_dir_all(path.parent().unwrap())?;
+
         let mut headers = HeaderMap::new();
         headers.append(COOKIE, SESSION_COOKIE.parse()?);
         let client = Client::builder().default_headers(headers).build()?;
 
         let res = client.execute(client.get(url(year, day)).build()?)?;
         let text = res.text()?;
-        fs::write(file, &text)?;
+        fs::write(path, &text)?;
 
         Ok(text)
     }
@@ -76,5 +79,5 @@ fn main() -> Result<()> {
         }
     }
 
-    bail!("year not found")
+    bail!("year not found");
 }

@@ -9,7 +9,7 @@ fn adjacents(n: usize) -> Vec<usize> {
     let xm = x > 0;
     let xp = x < 9;
     let ym = y > 0;
-    let yp = y < 9;    
+    let yp = y < 9;
 
     if xm && ym {
         vec.push(x - 1 + (y - 1) * 10);
@@ -59,7 +59,9 @@ fn simulate(levels: &mut [u8; 100], counter: &mut usize) {
             }
         }
     }
-    for l in &mut *levels { *l += 1 }
+    for l in &mut *levels {
+        *l += 1
+    }
 
     let mut visited = [false; 100];
     for n in 0..100 {
@@ -93,7 +95,7 @@ pub fn part1(s: String) -> Result<()> {
     }
 
     dbg!(counter);
-    
+
     Ok(())
 }
 
