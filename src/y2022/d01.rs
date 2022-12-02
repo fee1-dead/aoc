@@ -39,7 +39,7 @@ pub fn part2(s: String) -> Result<()> {
         .rev()
         .take(3)
         .sum();
-    
+
     dbg!(x);
 
     Ok(())
