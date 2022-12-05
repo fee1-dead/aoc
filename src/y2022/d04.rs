@@ -25,3 +25,4 @@ pub fn part2(s: String) -> Result<()> {
     dbg!(n);
     Ok(())
 }
+
