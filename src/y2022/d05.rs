@@ -57,4 +57,3 @@ pub fn part2(s: String) -> Result<()> {
     println!();
     Ok(())
 }
-

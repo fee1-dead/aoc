@@ -30,9 +30,10 @@ pub fn part2(s: String) -> Result<()> {
                 (0, 0) => 3,
                 (x, 0) => x,
                 _ => unreachable!(),
-            }) as u64 + (b * 3) as u64
+            }) as u64
+                + (b * 3) as u64
         })
-    .sum();
+        .sum();
     dbg!(x);
     Ok(())
 }
