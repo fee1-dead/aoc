@@ -18,7 +18,7 @@ impl Dir<'_> {
     }
 }
 
-pub fn inner(s: String, part: u8) {
+pub fn inner(s: String, _part: u8) {
     let lines = s.lines().skip(1);
     let mut current = "/".to_owned();
     let mut ls = false;
