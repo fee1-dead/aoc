@@ -10,8 +10,9 @@ mod d07;
 mod d08;
 mod d09;
 mod d10;
+mod d11;
 
-crate::days!(DAYS = d01, d02, d03, d04, d05, d06, d07, d08, d09, d10);
+crate::days!(DAYS = d01, d02, d03, d04, d05, d06, d07, d08, d09, d10, d11);
 
 pub const YEAR: Year = Year {
     year: 2022,

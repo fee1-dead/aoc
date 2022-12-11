@@ -9,9 +9,15 @@ pub struct Dir<'a> {
 
 impl Dir<'_> {
     pub fn size(&self, s: &str, map: &HashMap<String, Dir<'_>>) -> usize {
-        self.size + self.children.iter().map(|x| {
-            let path =format!("{s}/{x}");
-            map[&path].size(&path, map)}).sum::<usize>()
+        self.size
+            + self
+                .children
+                .iter()
+                .map(|x| {
+                    let path = format!("{s}/{x}");
+                    map[&path].size(&path, map)
+                })
+                .sum::<usize>()
     }
 }
 
@@ -68,7 +74,7 @@ pub fn inner(s: String, _part: u8) {
         if t <= 100000 {
             total += t;
         }
-        
+
         if t >= needs_free {
             m = m.min(t);
         }
@@ -79,7 +85,6 @@ pub fn inner(s: String, _part: u8) {
 }
 
 pub fn part1(s: String) -> Result<()> {
-
     inner(s, 1);
     Ok(())
 }

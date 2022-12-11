@@ -14,14 +14,14 @@ pub fn part1(s: String) -> Result<()> {
     macro_rules! is_touching {
         () => {
             head_pos == tail_pos
-            || head_pos == tail_pos + 1
-            || head_pos == tail_pos - 1
-            || head_pos == tail_pos + 1000
-            || head_pos == tail_pos - 1000
-            || head_pos == tail_pos + 1001
-            || head_pos == tail_pos - 1001
-            || head_pos == tail_pos + 999
-            || head_pos == tail_pos - 999
+                || head_pos == tail_pos + 1
+                || head_pos == tail_pos - 1
+                || head_pos == tail_pos + 1000
+                || head_pos == tail_pos - 1000
+                || head_pos == tail_pos + 1001
+                || head_pos == tail_pos - 1001
+                || head_pos == tail_pos + 999
+                || head_pos == tail_pos - 999
         };
     }
 
@@ -80,20 +80,20 @@ pub fn part1(s: String) -> Result<()> {
 
 pub fn part2(s: String) -> Result<()> {
     let mut grid = vec![Cell { visited: false }; 10000 * 10000];
-    let mut knots = vec![1000*999; 10];
+    let mut knots = vec![1000 * 999; 10];
     grid[*knots.last().unwrap()].visited = true;
 
     macro_rules! is_touching {
         ($prev: expr, $cur: expr) => {
             $prev == $cur
-            || $prev == $cur + 1
-            || $prev == $cur - 1
-            || $prev == $cur + 1000
-            || $prev == $cur - 1000
-            || $prev == $cur + 1001
-            || $prev == $cur - 1001
-            || $prev == $cur + 999
-            || $prev == $cur - 999
+                || $prev == $cur + 1
+                || $prev == $cur - 1
+                || $prev == $cur + 1000
+                || $prev == $cur - 1000
+                || $prev == $cur + 1001
+                || $prev == $cur - 1001
+                || $prev == $cur + 999
+                || $prev == $cur - 999
         };
     }
 
@@ -107,13 +107,25 @@ pub fn part2(s: String) -> Result<()> {
                 $cur - 1000
             } else if $prev == $cur + 2000 {
                 $cur + 1000
-            } else if $prev == $cur - 2000 - 2 || $prev == $cur - 2000 - 1 || $prev == $cur - 1000 - 2 {
+            } else if $prev == $cur - 2000 - 2
+                || $prev == $cur - 2000 - 1
+                || $prev == $cur - 1000 - 2
+            {
                 $cur - 1000 - 1
-            } else if $prev == $cur - 2000 + 2 || $prev == $cur - 2000 + 1 || $prev == $cur - 1000 + 2 {
+            } else if $prev == $cur - 2000 + 2
+                || $prev == $cur - 2000 + 1
+                || $prev == $cur - 1000 + 2
+            {
                 $cur - 1000 + 1
-            } else if $prev == $cur + 2000 + 2 || $prev == $cur + 2000 + 1 || $prev == $cur + 1000 + 2 {
+            } else if $prev == $cur + 2000 + 2
+                || $prev == $cur + 2000 + 1
+                || $prev == $cur + 1000 + 2
+            {
                 $cur + 1000 + 1
-            } else if $prev == $cur + 2000 - 2 || $prev == $cur + 2000 - 1 || $prev == $cur + 1000 - 2 {
+            } else if $prev == $cur + 2000 - 2
+                || $prev == $cur + 2000 - 1
+                || $prev == $cur + 1000 - 2
+            {
                 $cur + 1000 - 1
             } else {
                 unreachable!("{},{}", $prev, $cur)
@@ -129,9 +141,8 @@ pub fn part2(s: String) -> Result<()> {
             "U" => {
                 for _ in 0..n {
                     knots[0] -= 1000;
-                    
+
                     for n in 1..10 {
-                        
                         let prev_pos = knots[n - 1];
                         let cur_pos = knots[n];
                         if !is_touching!(prev_pos, cur_pos) {
@@ -145,7 +156,6 @@ pub fn part2(s: String) -> Result<()> {
                 for _ in 0..n {
                     knots[0] += 1000;
                     for n in 1..10 {
-                        
                         let prev_pos = knots[n - 1];
                         let cur_pos = knots[n];
                         if !is_touching!(prev_pos, cur_pos) {
@@ -159,7 +169,6 @@ pub fn part2(s: String) -> Result<()> {
                 for _ in 0..n {
                     knots[0] -= 1;
                     for n in 1..10 {
-                        
                         let prev_pos = knots[n - 1];
                         let cur_pos = knots[n];
                         if !is_touching!(prev_pos, cur_pos) {
@@ -173,8 +182,6 @@ pub fn part2(s: String) -> Result<()> {
                 for _ in 0..n {
                     knots[0] += 1;
                     for n in 1..10 {
-                        
-
                         let prev_pos = knots[n - 1];
                         let cur_pos = knots[n];
                         if !is_touching!(prev_pos, cur_pos) {

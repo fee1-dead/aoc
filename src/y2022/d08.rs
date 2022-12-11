@@ -71,7 +71,7 @@ pub fn part2(s: String) -> Result<()> {
     for (pos, cell) in grid.iter().enumerate() {
         let height = cell.x;
         let mut score = 1;
-        
+
         let x = pos % size;
         let y = pos / size;
         // up
