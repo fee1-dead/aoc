@@ -5,7 +5,7 @@ pub fn part1(s: String) -> Result<()> {
         .lines()
         .map(|x| x.parse().map_err(Into::into))
         .collect::<Result<_>>()?;
-    
+
     for i in 0..list.len() {
         let mut new_pos = list[i] + i as i64;
         while new_pos < 0 {
@@ -20,6 +20,6 @@ pub fn part1(s: String) -> Result<()> {
     Ok(())
 }
 
-pub fn part2(s: String) -> Result<()> {
+pub fn part2(_s: String) -> Result<()> {
     Ok(())
 }

@@ -1,6 +1,7 @@
 use std::env::args;
 use std::fs;
 use std::path::Path;
+use std::process::exit;
 use std::time::Instant;
 
 use reqwest::blocking::*;
@@ -25,11 +26,17 @@ fn get(year: u16, day: u8) -> Result<String> {
         std::fs::create_dir_all(path.parent().unwrap())?;
 
         let mut headers = HeaderMap::new();
-        headers.append(COOKIE, SESSION_COOKIE.parse()?);
+        headers.append(COOKIE, SESSION_COOKIE.trim().parse()?);
         let client = Client::builder().default_headers(headers).build()?;
 
         let res = client.execute(client.get(url(year, day)).build()?)?;
         let text = res.text()?;
+
+        if text.contains("Please log in") {
+            dbg!(text);
+            exit(1);
+        }
+
         fs::write(path, &text)?;
 
         Ok(text)

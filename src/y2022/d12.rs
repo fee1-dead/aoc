@@ -123,7 +123,9 @@ pub fn part2(s: String) -> Result<()> {
                     }
                 }};
             }
-            let Some(((x, y), steps)) = queue.pop_front() else { break };
+            let Some(((x, y), steps)) = queue.pop_front() else {
+                break;
+            };
 
             if visited[y][x] {
                 continue;

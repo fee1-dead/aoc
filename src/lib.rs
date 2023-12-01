@@ -4,7 +4,7 @@
 #![feature(iter_advance_by)]
 
 pub use color_eyre::eyre::*;
-pub use color_eyre::*;
+pub use color_eyre::{Report, Result};
 pub use fxhash::FxHashMap as HashMap;
 pub use fxhash::FxHashSet as HashSet;
 pub use itertools::Itertools;
@@ -18,6 +18,7 @@ mod y2015;
 mod y2020;
 mod y2021;
 mod y2022;
+mod y2023;
 
 pub macro years($years:ident = $($module:ident),+) {
     pub const $years: &[$crate::aoc::Year] = &[
@@ -36,4 +37,4 @@ pub macro days($days:ident = $($day:ident),+$(,)?) {
     ];
 }
 
-years!(YEARS = y2015, y2020, y2021, y2022);
+years!(YEARS = y2015, y2020, y2021, y2022, y2023);
