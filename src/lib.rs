@@ -25,7 +25,7 @@ pub macro years($years:ident = $($module:ident),+) {
     ];
 }
 
-pub macro days($days:ident = $($day:ident),+) {
+pub macro days($days:ident = $($day:ident),+$(,)?) {
     pub const $days: &[$crate::aoc::Day] = &[
         $(
             $crate::aoc::Day {
