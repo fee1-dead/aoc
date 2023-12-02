@@ -23,7 +23,7 @@ pub fn part1(s: String) -> Result<()> {
 
 pub fn part2(s: String) -> Result<()> {
     let mut sum = 0;
-    'x: for (n, l) in s.lines().enumerate() {
+    for l in s.lines() {
         let config = l.split_once(": ").unwrap().1.split(";");
         
         let mut red = 0;
