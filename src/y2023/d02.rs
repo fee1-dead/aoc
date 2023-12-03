@@ -4,16 +4,18 @@ pub fn part1(s: String) -> Result<()> {
     let mut sum = 0;
     'x: for (n, l) in s.lines().enumerate() {
         let config = l.split_once(": ").unwrap().1.split(";");
-        
+
         for x in config {
             for color in x.trim().split(", ") {
                 let (n, color) = color.split_once(" ").unwrap();
                 let n = n.parse::<u32>().unwrap();
-                if color == "red" && n > 12 || color == "green" && n > 13 || color == "blue" && n > 14 {
+                if color == "red" && n > 12
+                    || color == "green" && n > 13
+                    || color == "blue" && n > 14
+                {
                     continue 'x;
                 }
             }
-
         }
         sum += n + 1;
     }
@@ -25,7 +27,7 @@ pub fn part2(s: String) -> Result<()> {
     let mut sum = 0;
     for l in s.lines() {
         let config = l.split_once(": ").unwrap().1.split(";");
-        
+
         let mut red = 0;
         let mut green = 0;
         let mut blue = 0;
@@ -43,7 +45,6 @@ pub fn part2(s: String) -> Result<()> {
                     blue = blue.max(n);
                 }
             }
-
         }
         sum += red * green * blue;
     }
